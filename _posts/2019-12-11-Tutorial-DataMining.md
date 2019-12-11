@@ -11,3 +11,4 @@ title:  "Tutorial for Decision Tree and Random Forest"
 
 ### **Outline**
 ![masi.jpg](./images/masi.jpg.jpg)
+
