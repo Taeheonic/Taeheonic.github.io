@@ -7,11 +7,13 @@ use_math: true
 
 ## **Introduction**
 Tree-based model is one of the most used machine learning methods today. It is a supervised learning algorithm that can be applied to both classification and regression problems. There are many R or Python packages that automatically make a decision tree with a single line of code. However, this is not a tutorial of how to use such package. Rather, this will guide how to create a tree step by step so that you can understand what is happening in the decision tree and ensemble model. This tutorial is designed for people who don’t have any background about data mining or machine learning, but want to learn what is decision tree, how does decision tree work, and how is it used in ensemble models such as random forest algorithm. This tutorial will use a ‘Acute Inflammation’ dataset from UCI machine learning repository to focus on explaining classification tree and it will also includes little bit of mathematics and coding for better understanding.
+
 ___
+
 ## **What is decision tree?**
 I’m sure you have used a decision tree algorithm in your life. When you want to guess opponent’s quiz game and your opponent can only answer yes or no, you need to ask multiple questions in order to narrow the questions down to the answer (i.e. Twenty Questions Game). You are using a strategy similar to the decision tree algorithm in your head whenever you ask questions to the opponent; you tend to choose the question that splits or partitions best your ideas. Let’s talk about basic terminology before we begin talking about the algorithm.
 
-add img
+![tree1]({{site.baseurl}}/images/tree1.jpg)
 
 The graph above is an example of a decision tree using some data. It uses binary predictor variables and classifying binary response variable, so this is an example of classification tree.
 
@@ -22,15 +24,35 @@ If you look at the tree, there are 4 leaf nodes. In each node, there are two num
 As you might already have guessed, all the leaf nodes are classified perfectly (n vs 0 or 0 vs n). It looks like the decision tree is the best machine learning method for classification! However, it is not the case for the real world data. When the leaf node is not 100% classified as one or the other, it is considered as impure or uncertain. Thus, we need to find a way to measure or calculate this impurity so that we can minimize it. The most used method of measuring this impurity is called Gini impurity or Gini index. Here is the formula for the Gini index. There are other methods like cross-entropy or classification error rate, but we are only going to talk about Gini index in this tutorial
 
 $$
-*G.I*(A) = \sum_{i=1}^d (R_*i*(1- \sum_{k=1}^m (p_{*ik*}^2)))
+G.I(A) = \sum_{i=1}^d (R_i(1- \sum_{k=1}^m (p_{ik}^2)))
 $$
+___
 
+It is time to actually make a decision tree step by step. I will use a subset of ‘Acute Inflammation’ dataset in order to make an example simple. It has 3 predictors (Lumbar pain, Urine pushing, and Micturition pains) and 1 response variable (Decision). All 4 variables are binary data.
+
+First step of making a decision tree is a choosing root node. As I mentioned earlier, I will use Gini impurity as a method of measurement. The table below is a sample of the data I am going to  use.
+
+![table1]({{site.baseurl}}/images/table1.png)
+
+Let’s consider only Lumbar pain predictor and Decision on disease diagnosis (Nephritis or renal pelvis origin) response variable. Because both variables are binary, you can easily classify them. Suppose that you are making a small tree with one predictor and one response variable.
+
+![tree2]({{site.baseurl}}/images/tree2.jpg)
+
+It will look like as a figure above. 50 patients don’t have Lumbar pain and 70 patients have Lumbar pain. The left leaf node shows that 50 patients are diagnosed as having no disease and 0 patients are diagnosed as disease. The impurity of left node is measured as following:
+
+$$
+1 -{\frac{disease no}{total}}^2 -{\frac{disease yes}{total}}^2
+$$
+$$
+1 -{\frac{50}{50}}^2 -{\frac{0}{50}}^2 = 0
+$$
 
 ___
 
 
-
-
+$$
+Entropy(A) = -\sum_{k=1}^m (p_k) log(p_k)
+$$
 
 
 This formula $f(x) = x^2$ is an example.
