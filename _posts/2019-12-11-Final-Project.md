@@ -44,13 +44,13 @@ It will look like as a figure above. 50 patients don’t have Lumbar pain and 70
 
 $$
 1 -({\frac{\text{disease no}}{total}})^2 -({\frac{\text{disease yes}}{total}})^2 \\
-1 -({\frac{{50}{50}})^2 -({\frac{{0}{50}})^2 = 0
+1 -({\frac{{50}{50}}})^2 -({\frac{{0}{50}}})^2 = 0
 $$
 
 The right leaf node shows that 20 patients are diagnosed as having no disease and 50 patients are diagnosed as disease. The impurity of right node is measured exactly the same as the left node.
 
 $$
-1 -({\frac{{20}{20+50}})^2 -({\frac{{50}{20+50}})^2 = 0.4081633
+1 -({\frac{{20}{20+50}}})^2 -({\frac{{50}{20+50}}})^2 = 0.4081633
 $$
 
 After calculating both left and right leaf nodes’ impurities, the impurity of Lumbar pain can be measured by using weighted average. The formula for weighted average is:
@@ -81,6 +81,21 @@ $$
 $$
 
 In order to compare these values, you just need to choose the one with the minimum impurity. In this case, Lumbar pain has the smallest impurity. Thus the root node will become Lumbar pain. The tree that I got so far looks like the one I showed in the above.
+
+![tree2]({{site.baseurl}}/images/tree2.jpg)
+
+Next step is to find which predictor becomes a decision node. The left leaf node is classified as no disease 100%, which means it is not impure and no need to split more. I’m going to use the right leaf node (70 patients) to split. Using right leaf node as a root node, I will do the same steps from the beginning but without the Lumbar pain.
+
+$$
+\text{Urine push Impurity left} = 1 - (\frac{{30}{40}})^2 - (\frac{{10}{40}})^2 = 0.375 \\
+\text{Urine push Impurity right} = 1 - (\frac{{40}{40+40}})^2 - (\frac{{40}{40+40}})^2 = 0.5 \\
+\text{Urine push Impurity} = (\frac{{40}{120}})*0.375 + (\frac{{80}{120}})*0.5 = 0.458333 \\
+\\
+\text{Micturition pain Impurity left} = 1 - (\frac{{40}{21+40}})^2 - (\frac{{21}{21+40}})^2 = 0.4514915 \\
+\text{Micturition pain Impurity right} = 1 - (\frac{{30}{29+30}})^2 - (\frac{{29}{29+30}})^2 = 0.4998564 \\
+\text{Micturition pain Impurity} = (\frac{{61}{120}})*0.4514915 + (\frac{{59}{120}})*0.4998564 = 0.4752709 \\
+$$
+
 
 ___
 
