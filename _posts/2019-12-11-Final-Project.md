@@ -99,8 +99,8 @@ $$
 Again, I got the impurities for predictors.
 
 $
-Urine push = 0.1904762 \\
-Micturition pain = 0.2926829
+\text{Urine push} = 0.1904762 \\
+\text{Micturition pain} = 0.2926829
 $
 
 Since Urine push predictor has the lowest impurity, I’ll use it as a decision node. The tree will look like this after adding Urine push:
