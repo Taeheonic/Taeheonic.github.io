@@ -26,13 +26,14 @@ As you might already have guessed, all the leaf nodes are classified perfectly (
 $$
 G.I(A) = \sum_{i=1}^d (R_i(1- \sum_{k=1}^m (p_{ik}^2)))
 $$
+
 ___
 
 It is time to actually make a decision tree step by step. I will use a subset of ‘Acute Inflammation’ dataset in order to make an example simple. It has 3 predictors (Lumbar pain, Urine pushing, and Micturition pains) and 1 response variable (Decision). All 4 variables are binary data.
 
 First step of making a decision tree is a choosing root node. As I mentioned earlier, I will use Gini impurity as a method of measurement. The table below is a sample of the data I am going to  use.
 
-![table1]({{site.baseurl}}/images/table1.png)
+![table1]({{site.baseurl}}/images/table1.jpg)
 
 Let’s consider only Lumbar pain predictor and Decision on disease diagnosis (Nephritis or renal pelvis origin) response variable. Because both variables are binary, you can easily classify them. Suppose that you are making a small tree with one predictor and one response variable.
 
@@ -41,9 +42,7 @@ Let’s consider only Lumbar pain predictor and Decision on disease diagnosis (N
 It will look like as a figure above. 50 patients don’t have Lumbar pain and 70 patients have Lumbar pain. The left leaf node shows that 50 patients are diagnosed as having no disease and 0 patients are diagnosed as disease. The impurity of left node is measured as following:
 
 $$
-1 -{\frac{disease no}{total}}^2 -{\frac{disease yes}{total}}^2
-$$
-$$
+1 -{\frac{disease no}{total}}^2 -{\frac{disease yes}{total}}^2 \\
 1 -{\frac{50}{50}}^2 -{\frac{0}{50}}^2 = 0
 $$
 
