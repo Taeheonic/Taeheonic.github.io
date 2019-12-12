@@ -34,11 +34,12 @@ ___
 ## ** How is a decision tree made?**
 It is time to actually make a decision tree step by step. I will use a subset of ‘Acute Inflammation’ dataset in order to make an example simple. It has 3 predictors (Lumbar pain, Urine pushing, and Micturition pains) and 1 response variable (Decision). All 4 variables are binary data.
 
-`f <-file("http://archive.ics.uci.edu/ml/machine-learning-databases/acute/diagnosis.data", open="r" ,encoding="UTF-16LE")`
-`data <- read.table(f, dec=",", header=F)`
-`sample <- data[c(3,4,5,8)]`
-`names(sample) <-c('Lumbar pain','Urine pushing','Micturition pains','decision')`
-
+~~~r
+f <-file("http://archive.ics.uci.edu/ml/machine-learning-databases/acute/diagnosis.data", open="r" ,encoding="UTF-16LE")
+data <- read.table(f, dec=",", header=F)
+sample <- data[c(3,4,5,8)]
+names(sample) <-c('Lumbar pain','Urine pushing','Micturition pains','decision')
+~~~
 
 First step of making a decision tree is a choosing root node. As I mentioned earlier, I will use Gini impurity as a method of measurement. The table below is a sample of the data I am going to  use.
 
@@ -121,15 +122,18 @@ The right leaf node of Urine push is well classified, so I’m going to use the 
 
 There are some R packages that can create a decision tree. The one I used to make a decision tree above is ‘rpart’ package. You can use ‘rpart.plot’ package to change the format of the tree such as shape and color.
 
-`rpart.fit = rpart(decision~., data = sample) #fitting a decision tree`
-`plot(rpart.fit) # plot a decision tree`
-`text(rpart.fit) # label the nodes`
-`summary(rpart.fit, cp=1) #it gives you summary`
-`prp(rpart.fit, type=5, extra=1, branch=0,box.palette="GnRd") # change the color and branch shape using prp()`
-`
+~~~r
+rpart.fit = rpart(decision~., data = sample) #fitting a decision tree
+plot(rpart.fit) # plot a decision tree
+text(rpart.fit) # label the nodes
+summary(rpart.fit, cp=1) #it gives you summary
+prp(rpart.fit, type=5, extra=1, branch=0,box.palette="GnRd") # change the color and branch shape using prp()
+~~~
+
 ___
 
 ## **Usage of a decision tree in Machine Learning**
+
 
 
 ___
