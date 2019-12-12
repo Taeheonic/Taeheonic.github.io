@@ -96,8 +96,20 @@ $$
 \text{Micturition pain Impurity} = (\frac{41}{70})*0.4977026 + (\frac{29}{70})*0 = 0.2926829 \\
 $$
 
+Again, I got the impurities for predictors.
 
+$
+Urine push = 0.1904762 \\
+Micturition pain = 0.2926829
+$
 
+Since Urine push predictor has the lowest impurity, I’ll use it as a decision node. The tree will look like this after adding Urine push:
+
+![tree3]({{site.baseurl}}/images/tree3.jpg)
+
+The right leaf node of Urine push is well classified, so I’m going to use the leaf node for the next data split. The tree will be completed after putting Micturition pain as the last node as a decision tree:
+
+![tree4]({{site.baseurl}}/images/tree4.jpg)
 ___
 
 
