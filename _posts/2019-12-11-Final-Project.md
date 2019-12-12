@@ -31,7 +31,7 @@ $$
 ___
 
 
-## ** How is a decision tree made?**
+## **How is a decision tree made?**
 It is time to actually make a decision tree step by step. I will use a subset of ‘Acute Inflammation’ dataset in order to make an example simple. It has 3 predictors (Lumbar pain, Urine pushing, and Micturition pains) and 1 response variable (Decision). All 4 variables are binary data.
 
 ~~~r
@@ -132,12 +132,9 @@ prp(rpart.fit, type=5, extra=1, branch=0,box.palette="GnRd") # change the color 
 
 ___
 
-## **Usage of a decision tree in Machine Learning**
-
+## **Conclusion**
+A decision tree is great for classification, but why are there so many models such as random forest? The reason why you shouldn’t use a single decision tree for your model is because it is only works well with the given data. In other words, a decision tree does not classify the new data very well; this is known as overfitting. One way of solving this overfitting and low accuracy problem is creating a lot of trees so that it generalizes the result. Random forest method bootstraps the data to create random random trees and uses out-of-bag dataset (not used in making trees) to decide the number of random subset of variables to use for making trees. There are many packages regarding ensemble and boosting models, so if I had a chance to make another tutorial I would like to devote my time on making intuitive tutorial of ensemble model and boosting model.
 
 
 ___
 
-![masi]({{site.baseurl}}/images/masi.jpg)
-<img src="{{site.baseurl}}/images/masi.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="msai"><br/>
-<img src="{{site.baseurl}}/images/masi.jpg" width="40%" height="30%" title="px(픽셀) 크기 설정" alt="masi">
