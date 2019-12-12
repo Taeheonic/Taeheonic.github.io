@@ -24,7 +24,8 @@ If you look at the tree, there are 4 leaf nodes. In each node, there are two num
 As you might already have guessed, all the leaf nodes are classified perfectly (n vs 0 or 0 vs n). It looks like the decision tree is the best machine learning method for classification! However, it is not the case for the real world data. When the leaf node is not 100% classified as one or the other, it is considered as impure or uncertain. Thus, we need to find a way to measure or calculate this impurity so that we can minimize it. The most used method of measuring this impurity is called Gini impurity or Gini index. Here is the formula for the Gini index. There are other methods like cross-entropy or classification error rate, but I am only going to talk about Gini index in this tutorial.
 
 $$
-G.I(A) = \sum_{i=1}^d (R_i(1- \sum_{k=1}^m (p_{ik}^2)))
+G.I(A) = \sum_{i=1}^d (R_i(1- \sum_{k=1}^m (p_{ik}^2))) \\
+Entropy(A) = -\sum_{k=1}^m (p_k) log(p_k)
 $$
 
 ___
@@ -33,7 +34,6 @@ It is time to actually make a decision tree step by step. I will use a subset of
 
 First step of making a decision tree is a choosing root node. As I mentioned earlier, I will use Gini impurity as a method of measurement. The table below is a sample of the data I am going to  use.
 
-![table1]({{site.baseurl}}/images/table1.jpg)
 <img src="{{site.baseurl}}/images/table1.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="table1">
 
 Let’s consider only Lumbar pain predictor and Decision on disease diagnosis (Nephritis or renal pelvis origin) response variable. Because both variables are binary, you can easily classify them. Suppose that you are making a small tree with one predictor and one response variable.
@@ -75,8 +75,8 @@ $$
 Now you got all three impurities.
 
 $$
-\text{Lumbar pain} = 0.2380953
-\text{Urine push} = 0.458333
+\text{Lumbar pain} = 0.2380953 \\
+\text{Urine push} = 0.458333 \\
 \text{Micturition pain} = 0.4752709
 $$
 
@@ -87,31 +87,18 @@ In order to compare these values, you just need to choose the one with the minim
 Next step is to find which predictor becomes a decision node. The left leaf node is classified as no disease 100%, which means it is not impure and no need to split more. I’m going to use the right leaf node (70 patients) to split. Using right leaf node as a root node, I will do the same steps from the beginning but without the Lumbar pain.
 
 $$
-\text{Urine push Impurity left} = 1 - (\frac{30}{40})^2 - (\frac{10}{40})^2 = 0.375 \\
-\text{Urine push Impurity right} = 1 - (\frac{40}{40+40})^2 - (\frac{40}{40+40})^2 = 0.5 \\
-\text{Urine push Impurity} = (\frac{40}{120})*0.375 + (\frac{80}{120})*0.5 = 0.458333 \\
+\text{Urine push Impurity left} = 1 - (\frac{20}{10+20})^2 - (\frac{10}{10+20})^2 = 0.44444 \\
+\text{Urine push Impurity right} = 1 - (\frac{0}{40})^2 - (\frac{40}{40})^2 = 0 \\
+\text{Urine push Impurity} = (\frac{30}{70})*0.44444 + (\frac{40}{70})*0 = 0.1904762 \\ \\
 \\
-\text{Micturition pain Impurity left} = 1 - (\frac{40}{21+40})^2 - (\frac{21}{21+40})^2 = 0.4514915 \\
-\text{Micturition pain Impurity right} = 1 - (\frac{30}{29+30})^2 - (\frac{29}{29+30})^2 = 0.4998564 \\
-\text{Micturition pain Impurity} = (\frac{61}{120})*0.4514915 + (\frac{59}{120})*0.4998564 = 0.4752709 \\
+\text{Micturition pain Impurity left} = 1 - (\frac{20}{21+20})^2 - (\frac{21}{21+20})^2 = 0.4977026 \\
+\text{Micturition pain Impurity right} = 1 - (\frac{0}{29})^2 - (\frac{29}{29})^2 = 0 \\
+\text{Micturition pain Impurity} = (\frac{41}{70})*0.4977026 + (\frac{29}{70})*0 = 0.2926829 \\
 $$
+
 
 
 ___
-
-
-$$
-Entropy(A) = -\sum_{k=1}^m (p_k) log(p_k)
-$$
-
-
-This formula $f(x) = x^2$ is an example.
-
-$$
-\lim_{x\to 0}{\frac{e^x-1}{2x}}
-\overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
-\lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
-$$
 
 
 ![masi]({{site.baseurl}}/images/masi.jpg)
