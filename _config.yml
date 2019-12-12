@@ -16,6 +16,10 @@ url: "http://webjeda.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+lsi: false
+except_separator: "\n\n"
+incremental: false
 baseurl: 
 permalink: /:title/
 
