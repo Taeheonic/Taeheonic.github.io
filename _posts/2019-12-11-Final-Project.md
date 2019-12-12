@@ -44,13 +44,13 @@ It will look like as a figure above. 50 patients don’t have Lumbar pain and 70
 
 $$
 1 -({\frac{\text{disease no}}{total}})^2 -({\frac{\text{disease yes}}{total}})^2 \\
-1 -({\frac{50}{50}})^2 -({\frac{0}{50}})^2 = 0
+1 -({\frac{{50}{50}})^2 -({\frac{{0}{50}})^2 = 0
 $$
 
 The right leaf node shows that 20 patients are diagnosed as having no disease and 50 patients are diagnosed as disease. The impurity of right node is measured exactly the same as the left node.
 
 $$
-1 -({\frac{20}{20+50}})^2 -({\frac{50/20+50}})^2 = 0.4081633
+1 -({\frac{{20}{20+50}})^2 -({\frac{{50}{20+50}})^2 = 0.4081633
 $$
 
 After calculating both left and right leaf nodes’ impurities, the impurity of Lumbar pain can be measured by using weighted average. The formula for weighted average is:
