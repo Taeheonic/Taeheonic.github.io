@@ -15,13 +15,13 @@ I’m sure you have used a decision tree algorithm in your life. When you want t
 
 ![tree1]({{site.baseurl}}/images/tree1.jpg)
 
-The graph above is an example of a decision tree using some data. It uses binary predictor variables and classifying binary response variable, so this is an example of classification tree.
+The graph above is an example of a decision tree using some data. It uses binary predictor variables and binary response variable, so this is an example of classification tree.
 
-V4, V5, and V3 are the predictors of the data and they are nodes of the tree. But, they are not the same nodes. V4 is 	called root node where the data is being split first. V3 and V5 are called decision nodes which are also the place where the data is being split. I’m going to explain how to choose which node to make as a root node and which nodes to make as decision nodes. The nodes that don’t have branch underneath, they are called leaf nodes or terminal nodes.
+V4, V5, and V3 are the predictors of the data and they are nodes of the tree. But, they are not the same nodes. V4 is 	called root node where the data is being split first. V3 and V5 are called decision nodes which are also the place where the data is being split. I’m going to explain how to choose which node to make as a root node and which nodes to make as decision nodes later in this tutorial. The nodes that don’t have branch underneath, they are called leaf nodes or terminal nodes.
 
 If you look at the tree, there are 4 leaf nodes. In each node, there are two numbers in each leaf node. For example, the very left leaf node have 40 and 0. This means there are 40 observations that are not V4, and all 40 observations are classified as no and 0 observation is classified as yes. If you add all the numbers in the leaf nodes, it will give the total observations. In this example, there are 120 observations and split three times at V4, V5, and V3 nodes.
 
-As you might already have guessed, all the leaf nodes are classified perfectly (n vs 0 or 0 vs n). It looks like the decision tree is the best machine learning method for classification! However, it is not the case for the real world data. When the leaf node is not 100% classified as one or the other, it is considered as impure or uncertain. Thus, we need to find a way to measure or calculate this impurity so that we can minimize it. The most used method of measuring this impurity is called Gini impurity or Gini index. Here is the formula for the Gini index. There are other methods like cross-entropy or classification error rate, but we are only going to talk about Gini index in this tutorial
+As you might already have guessed, all the leaf nodes are classified perfectly (n vs 0 or 0 vs n). It looks like the decision tree is the best machine learning method for classification! However, it is not the case for the real world data. When the leaf node is not 100% classified as one or the other, it is considered as impure or uncertain. Thus, we need to find a way to measure or calculate this impurity so that we can minimize it. The most used method of measuring this impurity is called Gini impurity or Gini index. Here is the formula for the Gini index. There are other methods like cross-entropy or classification error rate, but I am only going to talk about Gini index in this tutorial.
 
 $$
 G.I(A) = \sum_{i=1}^d (R_i(1- \sum_{k=1}^m (p_{ik}^2)))
@@ -44,32 +44,32 @@ It will look like as a figure above. 50 patients don’t have Lumbar pain and 70
 
 $$
 1 -({\frac{\text{disease no}}{total}})^2 -({\frac{\text{disease yes}}{total}})^2 \\
-1 -({\frac{{50}{50}}})^2 -({\frac{{0}{50}}})^2 = 0
+1 -({\frac{50}{50}})^2 -({\frac{0}{50}})^2 = 0
 $$
 
 The right leaf node shows that 20 patients are diagnosed as having no disease and 50 patients are diagnosed as disease. The impurity of right node is measured exactly the same as the left node.
 
 $$
-1 -({\frac{{20}{20+50}}})^2 -({\frac{{50}{20+50}}})^2 = 0.4081633
+1 -({\frac{20}{20+50}})^2 -({\frac{50}{20+50}})^2 = 0.4081633
 $$
 
 After calculating both left and right leaf nodes’ impurities, the impurity of Lumbar pain can be measured by using weighted average. The formula for weighted average is:
 
 $$
-(\frac{{\text{# of patients in left leaf}}{total}})*\text{impurity of left leaf} + (\frac{{\text{# of patients in right leaf}}{total}})*\text{impurity of right leaf} \\
-(\frac{{50}{120}})*0 + (\frac{{70}{120}})*0.4081633 = 0.2380953
+(\frac{\text{# of patients in left leaf}}{total})*\text{impurity of left leaf} + (\frac{\text{# of patients in right leaf}}{total})*\text{impurity of right leaf} \\
+(\frac{50}{120})*0 + (\frac{70}{120})*0.4081633 = 0.2380953
 $$
 
 Finally, you got the Gini impurity for Lumbar pain predictor. You need to do the same steps for Urine push and Micturition pain predictors.
 
 $$
-\text{Urine push Impurity left} = 1 - (\frac{{30}{40}})^2 - (\frac{{10}{40}})^2 = 0.375 \\
-\text{Urine push Impurity right} = 1 - (\frac{{40}{40+40}})^2 - (\frac{{40}{40+40}})^2 = 0.5 \\
-\text{Urine push Impurity} = (\frac{{40}{120}})*0.375 + (\frac{{80}{120}})*0.5 = 0.458333 \\
+\text{Urine push Impurity left} = 1 - (\frac{30}{40})^2 - (\frac{10}{40})^2 = 0.375 \\
+\text{Urine push Impurity right} = 1 - (\frac{40}{40+40})^2 - (\frac{40}{40+40})^2 = 0.5 \\
+\text{Urine push Impurity} = (\frac{40}{120})*0.375 + (\frac{80}{120})*0.5 = 0.458333 \\
 \\
-\text{Micturition pain Impurity left} = 1 - (\frac{{40}{21+40}})^2 - (\frac{{21}{21+40}})^2 = 0.4514915 \\
-\text{Micturition pain Impurity right} = 1 - (\frac{{30}{29+30}})^2 - (\frac{{29}{29+30}})^2 = 0.4998564 \\
-\text{Micturition pain Impurity} = (\frac{{61}{120}})*0.4514915 + (\frac{{59}{120}})*0.4998564 = 0.4752709 \\
+\text{Micturition pain Impurity left} = 1 - (\frac{40}{21+40})^2 - (\frac{21}{21+40})^2 = 0.4514915 \\
+\text{Micturition pain Impurity right} = 1 - (\frac{30}{29+30})^2 - (\frac{29}{29+30})^2 = 0.4998564 \\
+\text{Micturition pain Impurity} = (\frac{61}{120})*0.4514915 + (\frac{59}{120})*0.4998564 = 0.4752709 \\
 $$
 
 Now you got all three impurities.
@@ -87,13 +87,13 @@ In order to compare these values, you just need to choose the one with the minim
 Next step is to find which predictor becomes a decision node. The left leaf node is classified as no disease 100%, which means it is not impure and no need to split more. I’m going to use the right leaf node (70 patients) to split. Using right leaf node as a root node, I will do the same steps from the beginning but without the Lumbar pain.
 
 $$
-\text{Urine push Impurity left} = 1 - (\frac{{30}{40}})^2 - (\frac{{10}{40}})^2 = 0.375 \\
-\text{Urine push Impurity right} = 1 - (\frac{{40}{40+40}})^2 - (\frac{{40}{40+40}})^2 = 0.5 \\
-\text{Urine push Impurity} = (\frac{{40}{120}})*0.375 + (\frac{{80}{120}})*0.5 = 0.458333 \\
+\text{Urine push Impurity left} = 1 - (\frac{30}{40})^2 - (\frac{10}{40})^2 = 0.375 \\
+\text{Urine push Impurity right} = 1 - (\frac{40}{40+40})^2 - (\frac{40}{40+40})^2 = 0.5 \\
+\text{Urine push Impurity} = (\frac{40}{120})*0.375 + (\frac{80}{120})*0.5 = 0.458333 \\
 \\
-\text{Micturition pain Impurity left} = 1 - (\frac{{40}{21+40}})^2 - (\frac{{21}{21+40}})^2 = 0.4514915 \\
-\text{Micturition pain Impurity right} = 1 - (\frac{{30}{29+30}})^2 - (\frac{{29}{29+30}})^2 = 0.4998564 \\
-\text{Micturition pain Impurity} = (\frac{{61}{120}})*0.4514915 + (\frac{{59}{120}})*0.4998564 = 0.4752709 \\
+\text{Micturition pain Impurity left} = 1 - (\frac{40}{21+40})^2 - (\frac{21}{21+40})^2 = 0.4514915 \\
+\text{Micturition pain Impurity right} = 1 - (\frac{30}{29+30})^2 - (\frac{29}{29+30})^2 = 0.4998564 \\
+\text{Micturition pain Impurity} = (\frac{61}{120})*0.4514915 + (\frac{59}{120})*0.4998564 = 0.4752709 \\
 $$
 
 
