@@ -8,6 +8,8 @@ use_math: true
 ## **Introduction**
 Tree-based model is one of the most used machine learning methods today. It is a supervised learning algorithm that can be applied to both classification and regression problems. There are many R or Python packages that automatically make a decision tree with a single line of code. However, this is not a tutorial of how to use such package. Rather, this will guide how to create a tree step by step so that you can understand what is happening in the decision tree and ensemble model. This tutorial is designed for people who don’t have any background about data mining or machine learning, but want to learn what is decision tree, how does decision tree work, and why is it used in ensemble models such as random forest algorithm. This tutorial will use a ‘Acute Inflammation’ dataset from UCI machine learning repository to focus on explaining classification tree and it will also includes little bit of mathematics and coding for better understanding.
 
+![decision2]({{site.baseurl}}/images/decision2.jpg)
+
 ___
 
 ## **What is decision tree?**
@@ -135,6 +137,16 @@ ___
 ## **Conclusion**
 A decision tree is great for classification, but why are there so many models such as random forest? The reason why you shouldn’t use a single decision tree for your model is because it is only works well with the given data. In other words, a decision tree does not classify the new data very well; this is known as overfitting. One way of solving this overfitting and low accuracy problem is creating a lot of trees so that it generalizes the result. Random forest method bootstraps the data to create random random trees and uses out-of-bag dataset (not used in making trees) to decide the number of random subset of variables to use for making trees. There are many packages regarding ensemble and boosting models, so if I had a chance to make another tutorial I would like to devote my time on making intuitive tutorial of ensemble model and boosting model.
 
+![decision]({{site.baseurl}}/images/decision.jpg)
 
 ___
 
+## **References**
+https://ratsgo.github.io/machine%20learning/2017/03/26/tree/
+https://www.datacamp.com/community/tutorials/decision-trees-R
+https://www.mnn.com/earth-matters/wilderness-resources/blogs/21-reasons-why-forests-are-important
+https://www.mememaker.net/meme/decisions-decisions-everywhere25/
+
+
+
+___
