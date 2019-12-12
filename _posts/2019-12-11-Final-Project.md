@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Tutorial for Decision Tree and Random Forest"
+title: "Tutorial for Decision Tree"
 
 use_math: true
 ---
 
 ## **Introduction**
-Tree-based model is one of the most used machine learning methods today. It is a supervised learning algorithm that can be applied to both classification and regression problems. There are many R or Python packages that automatically make a decision tree with a single line of code. However, this is not a tutorial of how to use such package. Rather, this will guide how to create a tree step by step so that you can understand what is happening in the decision tree and ensemble model. This tutorial is designed for people who don’t have any background about data mining or machine learning, but want to learn what is decision tree, how does decision tree work, and how is it used in ensemble models such as random forest algorithm. This tutorial will use a ‘Acute Inflammation’ dataset from UCI machine learning repository to focus on explaining classification tree and it will also includes little bit of mathematics and coding for better understanding.
+Tree-based model is one of the most used machine learning methods today. It is a supervised learning algorithm that can be applied to both classification and regression problems. There are many R or Python packages that automatically make a decision tree with a single line of code. However, this is not a tutorial of how to use such package. Rather, this will guide how to create a tree step by step so that you can understand what is happening in the decision tree and ensemble model. This tutorial is designed for people who don’t have any background about data mining or machine learning, but want to learn what is decision tree, how does decision tree work, and why is it used in ensemble models such as random forest algorithm. This tutorial will use a ‘Acute Inflammation’ dataset from UCI machine learning repository to focus on explaining classification tree and it will also includes little bit of mathematics and coding for better understanding.
 
 ___
 
@@ -30,7 +30,15 @@ $$
 
 ___
 
+
+## ** How is a decision tree made?**
 It is time to actually make a decision tree step by step. I will use a subset of ‘Acute Inflammation’ dataset in order to make an example simple. It has 3 predictors (Lumbar pain, Urine pushing, and Micturition pains) and 1 response variable (Decision). All 4 variables are binary data.
+
+`f <-file("http://archive.ics.uci.edu/ml/machine-learning-databases/acute/diagnosis.data", open="r" ,encoding="UTF-16LE")`
+`data <- read.table(f, dec=",", header=F)`
+`sample <- data[c(3,4,5,8)]`
+`names(sample) <-c('Lumbar pain','Urine pushing','Micturition pains','decision')`
+
 
 First step of making a decision tree is a choosing root node. As I mentioned earlier, I will use Gini impurity as a method of measurement. The table below is a sample of the data I am going to  use.
 
@@ -110,8 +118,21 @@ Since Urine push predictor has the lowest impurity, I’ll use it as a decision 
 The right leaf node of Urine push is well classified, so I’m going to use the leaf node for the next data split. The tree will be completed after putting Micturition pain as the last node as a decision tree:
 
 ![tree4]({{site.baseurl}}/images/tree4.jpg)
+
+There are some R packages that can create a decision tree. The one I used to make a decision tree above is ‘rpart’ package. You can use ‘rpart.plot’ package to change the format of the tree such as shape and color.
+
+`rpart.fit = rpart(decision~., data = sample) #fitting a decision tree`
+`plot(rpart.fit) # plot a decision tree`
+`text(rpart.fit) # label the nodes`
+`summary(rpart.fit, cp=1) #it gives you summary`
+`prp(rpart.fit, type=5, extra=1, branch=0,box.palette="GnRd") # change the color and branch shape using prp()`
+`
 ___
 
+## **Usage of a decision tree in Machine Learning**
+
+
+___
 
 ![masi]({{site.baseurl}}/images/masi.jpg)
 <img src="{{site.baseurl}}/images/masi.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="msai"><br/>
